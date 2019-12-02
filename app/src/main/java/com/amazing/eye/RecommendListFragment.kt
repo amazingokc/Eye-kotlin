@@ -1,19 +1,23 @@
 package com.amazing.eye
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amazing.eye.adapter.RecommendListAdapter
+import com.amazing.eye.viewmodel.HomeVm
 import kotlinx.android.synthetic.main.fragment_recommend_list.*
 
 
 /**
  *
  */
-class RecommendListFragment : Fragment() {
+class RecommendListFragment : BaseFragment() {
+
+    var homeVm: HomeVm? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,5 +43,14 @@ class RecommendListFragment : Fragment() {
         @JvmStatic
         fun newInstance() =
             RecommendListFragment()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("onResumeonResume", "RecommendListFragment")
+        if (homeVm == null) {
+            homeVm = HomeVm()
+            homeVm!!.loadData()
+        }
     }
 }

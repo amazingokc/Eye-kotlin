@@ -3,6 +3,7 @@ package com.amazing.eye
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,6 @@ import com.amazing.eye.viewmodel.HomeVm
 
 
 class HotListFragment : Fragment() {
-
-    var homeVm = HomeVm()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,6 @@ class HotListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        homeVm.loadData()
     }
 
     override fun onDetach() {
@@ -40,5 +38,10 @@ class HotListFragment : Fragment() {
 
         @JvmStatic
         fun newInstance() = HotListFragment()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("onResumeonResume", "HotListFragment")
     }
 }

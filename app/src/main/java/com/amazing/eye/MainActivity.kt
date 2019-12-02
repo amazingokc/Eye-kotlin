@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.amazing.eye.adapter.CommonViewpagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
