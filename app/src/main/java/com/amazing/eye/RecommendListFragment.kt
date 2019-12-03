@@ -1,13 +1,13 @@
 package com.amazing.eye
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amazing.eye.adapter.RecommendListAdapter
+import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.viewmodel.HomeVm
 import kotlinx.android.synthetic.main.fragment_recommend_list.*
 
@@ -17,25 +17,19 @@ import kotlinx.android.synthetic.main.fragment_recommend_list.*
  */
 class RecommendListFragment : BaseFragment() {
 
-    var homeVm: HomeVm? = null
+    lateinit var adapter: RecommendListAdapter
+    private var homeVm: HomeVm? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recommend_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val adapter = RecommendListAdapter()
-        rv_list_recommend.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
-        rv_list_recommend.adapter = adapter
+
 
     }
 
@@ -47,10 +41,27 @@ class RecommendListFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("onResumeonResume", "RecommendListFragment")
         if (homeVm == null) {
-            homeVm = HomeVm()
-            homeVm!!.loadData()
+            homeVm = createViewModel(HomeVm::class.java)
+            adapter = RecommendListAdapter(homeVm!!.getDatas())
+            rv_list_recommend.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            rv_list_recommend.adapter = adapter
+            homeVm!!.loadData(false)
         }
     }
+
+    override fun onApiSuccessCallBack(baseBean: BaseBean) {
+        super.onApiSuccessCallBack(baseBean)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onApiErrorCallBack(baseBean: BaseBean) {
+        super.onApiErrorCallBack(baseBean)
+        Toast.makeText(activity, baseBean.errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
 }

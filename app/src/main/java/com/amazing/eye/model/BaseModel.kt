@@ -30,12 +30,18 @@ abstract class BaseModel {
 
                 }
 
-                override fun onNext(t: BaseBean) {
-                    iDatasListener?.getSuccess(0, "", t)
+                override fun onNext(baseBean: BaseBean) {
+                    baseBean.responCode = 1
+                    baseBean.responType = ""
+                    iDatasListener?.getSuccess(baseBean)
                 }
 
                 override fun onError(e: Throwable) {
-                    iDatasListener?.getfaild(-1, "", "cuowu", BaseBean())
+                    var baseBean = BaseBean()
+                    baseBean.responCode = -1
+                    baseBean.responType = ""
+                    baseBean.errorMessage = e.message.toString()
+                    iDatasListener?.getfaild(baseBean)
                 }
 
             })

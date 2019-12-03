@@ -3,6 +3,14 @@
 
     <data>
 
+        <variable
+            name="issueListBean"
+            type="com.amazing.eye.bean.HomeBean.IssueListBean" />
+
+        <variable
+            name="recommendlistadapter"
+            type="com.amazing.eye.adapter.RecommendListAdapter" />
+
     </data>
 
     <LinearLayout

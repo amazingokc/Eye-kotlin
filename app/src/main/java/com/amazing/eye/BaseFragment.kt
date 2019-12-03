@@ -1,26 +1,34 @@
 package com.amazing.eye
 
-import android.content.Context
-import android.net.Uri
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import com.amazing.eye.bean.BaseBean
+import com.amazing.eye.interfaces.IBaseView
+import com.amazing.eye.viewmodel.BaseViewModel
 
 
-open class BaseFragment : Fragment() {
+open class BaseFragment : Fragment(), IBaseView {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun <T : BaseViewModel> createViewModel(viewModelClass: Class<T>): T {
+        return ViewModelProviders.of(this).get(viewModelClass)
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_base, container, false)
-//    }
+    override fun registerViewModelObserver(baseViewModel: BaseViewModel) {
+        baseViewModel.getSuccessLiveData().observe(this, Observer<BaseBean> {
+            onApiSuccessCallBack(it)
+        })
+
+        baseViewModel.getErrorLiveData().observe(this, Observer<BaseBean> {
+            onApiErrorCallBack(it)
+        })
+    }
+
+    override fun onApiSuccessCallBack(baseBean: BaseBean) {
+    }
+
+    override fun onApiErrorCallBack(baseBean: BaseBean) {
+    }
 
 }

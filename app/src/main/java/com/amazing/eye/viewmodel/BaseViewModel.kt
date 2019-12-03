@@ -1,22 +1,25 @@
 package com.amazing.eye.viewmodel
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.amazing.eye.IDatasListener
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
 
-open class BaseViewModel constructor(var baseModel: BaseModel) : IDatasListener {
+open class BaseViewModel constructor(var baseModel: BaseModel) : ViewModel(), IDatasListener {
 
-    private val successLiveData = MutableLiveData<Any>()
-    private val errorLiveData = MutableLiveData<Any>()
+    private val successLiveData = MutableLiveData<BaseBean>()
+    private val errorLiveData = MutableLiveData<BaseBean>()
 
-    protected fun onSuccess(resonCode: Int, responType: String, data: BaseBean) {
-        successLiveData.setValue(data)
+    fun getSuccessLiveData(): MutableLiveData<BaseBean> = successLiveData
+    fun getErrorLiveData(): MutableLiveData<BaseBean> = errorLiveData
+
+    open fun onSuccess(baseBean: BaseBean) {
+        successLiveData.value = baseBean
     }
 
-    protected fun onFail(resonCode: Int, responType: String, data: BaseBean) {
-        errorLiveData.setValue(data)
+    open fun onFail(baseBean: BaseBean) {
+        errorLiveData.value = baseBean
     }
 
     open fun loadData() {
@@ -24,11 +27,11 @@ open class BaseViewModel constructor(var baseModel: BaseModel) : IDatasListener 
         baseModel.loadData()
     }
 
-    override fun getSuccess(responCode: Int, responType: String, baseBean: BaseBean) {
-
+    override fun getSuccess(baseBean: BaseBean) {
+        onSuccess(baseBean)
     }
 
-    override fun getfaild(responCode: Int, responType: String, errorMessage: String, baseBean: BaseBean) {
-
+    override fun getfaild(baseBean: BaseBean) {
+        onFail(baseBean)
     }
 }
