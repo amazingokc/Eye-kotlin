@@ -7,9 +7,9 @@ interface IBaseView {
 
     fun <T : BaseViewModel> createViewModel(viewModelClass: Class<T>): T
 
-    fun registerViewModelObserver(baseViewModel: BaseViewModel)
+    fun  registerViewModelObserver(baseViewModel: BaseViewModel)
 
-    fun onApiSuccessCallBack(baseBean: BaseBean)
+    fun onApiSuccessCallBack(any: Any)
 
-    fun onApiErrorCallBack(baseBean: BaseBean)
+    fun onApiErrorCallBack(any: Any)
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="issueListBean"
-            type="com.amazing.eye.bean.HomeBean.IssueListBean" />
+            name="itemListBean"
+            type="com.amazing.eye.bean.HomeBean.IssueListBean.ItemListBean" />
 
         <variable
             name="recommendlistadapter"
@@ -18,10 +21,12 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/ic_launcher_background"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            />
+            android:layout_height="120dp"
+            app:error="@{@drawable/ic_launcher_background}"
+            app:placeHolder="@{@drawable/ic_launcher_background}"
+            android:src="@drawable/ic_launcher_background"
+            app:imgUrlCircleUrl="@{itemListBean.data.cover.feed}" />
 
     </LinearLayout>
 </layout>

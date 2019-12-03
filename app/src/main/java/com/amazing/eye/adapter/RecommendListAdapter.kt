@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amazing.eye.R
 import com.amazing.eye.bean.HomeBean
 
-class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean>) :
+class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean.ItemListBean>) :
     RecyclerView.Adapter<RecommendListAdapter.MyViewholder>() {
 
 
@@ -21,11 +21,11 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
     }
 
     override fun getItemCount(): Int {
-        return if (dadaist == null) 0 else dadaist!!.size
+        return dadaist.size
     }
 
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
-        holder.binding.setVariable(com.amazing.eye.BR.issueListBean, dadaist!![position])
+        holder.binding.setVariable(com.amazing.eye.BR.itemListBean, dadaist[position])
         holder.binding.setVariable(com.amazing.eye.BR.recommendlistadapter, this)
         holder.binding.executePendingBindings()
     }

@@ -16,19 +16,19 @@ open class BaseFragment : Fragment(), IBaseView {
     }
 
     override fun registerViewModelObserver(baseViewModel: BaseViewModel) {
-        baseViewModel.getSuccessLiveData().observe(this, Observer<BaseBean> {
+        baseViewModel.getSuccessLiveData().observe(this, Observer<Any> {
             onApiSuccessCallBack(it)
         })
 
-        baseViewModel.getErrorLiveData().observe(this, Observer<BaseBean> {
+        baseViewModel.getErrorLiveData().observe(this, Observer<Any> {
             onApiErrorCallBack(it)
         })
     }
 
-    override fun onApiSuccessCallBack(baseBean: BaseBean) {
+    override fun onApiSuccessCallBack(any: Any) {
     }
 
-    override fun onApiErrorCallBack(baseBean: BaseBean) {
+    override fun onApiErrorCallBack(any: Any) {
     }
 
 }

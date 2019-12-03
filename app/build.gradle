@@ -65,4 +65,6 @@ dependencies {
     //viewmodel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 }

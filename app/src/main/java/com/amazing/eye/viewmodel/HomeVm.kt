@@ -1,16 +1,17 @@
 package com.amazing.eye.viewmodel
 
+import android.widget.ImageView
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.model.HomeModel
 
 class HomeVm : BaseViewModel(HomeModel()) {
 
-    var dadaist = mutableListOf<HomeBean.IssueListBean>()
+    var dadaist = mutableListOf<HomeBean.IssueListBean.ItemListBean>()
 
     var isLoadMore = false
 
-    fun getDatas(): MutableList<HomeBean.IssueListBean> {
+    fun getDatas(): MutableList<HomeBean.IssueListBean.ItemListBean> {
         return dadaist
     }
 
@@ -20,20 +21,26 @@ class HomeVm : BaseViewModel(HomeModel()) {
     }
 
 
-    override fun onSuccess(baseBean: BaseBean) {
-        if (baseBean is HomeBean) {
-            baseBean.issueList?.let {
+    override fun onSuccess(any: Any) {
+        if (any is HomeBean) {
+            any.issueList?.get(0)?.itemList?.let {
                 if (!isLoadMore) {
                     dadaist.clear()
                 }
-                dadaist.addAll(it)
+                for (i in it) {
+                    if ("video" == i.type) {
+                        dadaist.add(i)
+                    }
+                }
             }
-            super.onSuccess(baseBean)
+            super.onSuccess(dadaist)
         }
-
+         var imageView :ImageView
     }
 
-    override fun onFail(baseBean: BaseBean) {
-        super.onFail(baseBean)
+    override fun onFail(any: Any) {
+        if (any is HomeBean) {
+            super.onFail(any.errorMessage)
+        }
     }
 }

@@ -43,6 +43,7 @@ class RecommendListFragment : BaseFragment() {
         super.onResume()
         if (homeVm == null) {
             homeVm = createViewModel(HomeVm::class.java)
+            registerViewModelObserver(homeVm!!)
             adapter = RecommendListAdapter(homeVm!!.getDatas())
             rv_list_recommend.layoutManager = LinearLayoutManager(
                 context,
@@ -54,14 +55,14 @@ class RecommendListFragment : BaseFragment() {
         }
     }
 
-    override fun onApiSuccessCallBack(baseBean: BaseBean) {
-        super.onApiSuccessCallBack(baseBean)
+    override fun onApiSuccessCallBack(any: Any) {
+        super.onApiSuccessCallBack(any)
         adapter.notifyDataSetChanged()
     }
 
-    override fun onApiErrorCallBack(baseBean: BaseBean) {
-        super.onApiErrorCallBack(baseBean)
-        Toast.makeText(activity, baseBean.errorMessage, Toast.LENGTH_SHORT).show()
+    override fun onApiErrorCallBack(any: Any) {
+        super.onApiErrorCallBack(any)
+        Toast.makeText(activity, any.toString(), Toast.LENGTH_SHORT).show()
     }
 
 }

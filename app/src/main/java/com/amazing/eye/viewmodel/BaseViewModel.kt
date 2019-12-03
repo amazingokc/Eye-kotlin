@@ -5,21 +5,22 @@ import androidx.lifecycle.ViewModel
 import com.amazing.eye.IDatasListener
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
+import java.util.*
 
 open class BaseViewModel constructor(var baseModel: BaseModel) : ViewModel(), IDatasListener {
 
-    private val successLiveData = MutableLiveData<BaseBean>()
-    private val errorLiveData = MutableLiveData<BaseBean>()
+    private val successLiveData = MutableLiveData<Any>()
+    private val errorLiveData = MutableLiveData<Any>()
 
-    fun getSuccessLiveData(): MutableLiveData<BaseBean> = successLiveData
-    fun getErrorLiveData(): MutableLiveData<BaseBean> = errorLiveData
+    fun getSuccessLiveData(): MutableLiveData<Any> = successLiveData
+    fun getErrorLiveData(): MutableLiveData<Any> = errorLiveData
 
-    open fun onSuccess(baseBean: BaseBean) {
-        successLiveData.value = baseBean
+    open fun onSuccess(any: Any) {
+        successLiveData.value = any
     }
 
-    open fun onFail(baseBean: BaseBean) {
-        errorLiveData.value = baseBean
+    open fun onFail(any: Any) {
+        errorLiveData.value = any
     }
 
     open fun loadData() {
