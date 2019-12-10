@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,17 +17,82 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/gsy_player_recommend_item"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            app:error="@{@drawable/ic_launcher_background}"
-            app:placeHolder="@{@drawable/ic_launcher_background}"
-            android:src="@drawable/ic_launcher_background"
-            app:imgUrlCircleUrl="@{itemListBean.data.cover.feed}" />
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="h,620:350"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <!--皮肤-->
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_skin_video_recommend_item"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gsy_player_recommend_item"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--底部-->
+            <RelativeLayout
+                android:id="@+id/rl_bottom_recommend_item"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/ic_video_collect" />
+                <!--收藏数量-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="@{itemListBean.data.consumption.collectionCount}"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="收藏数量" />
+
+                <!--时长-->
+                <TextView
+                    android:id="@+id/tv_time_recommend_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="12dp"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="时长两年半" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--封面-->
+        <ImageView
+            android:id="@+id/iv_cover_recommend_item"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="h,620:350"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

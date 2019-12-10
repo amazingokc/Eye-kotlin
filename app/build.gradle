@@ -67,4 +67,9 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    //播放器
+    implementation 'com.shuyu:gsyVideoPlayer-java:7.1.2'
+    implementation 'com.shuyu:gsyVideoPlayer-armv7a:7.1.2'
+    implementation 'com.shuyu:gsyVideoPlayer-x86:7.1.2'
 }

@@ -20,23 +20,17 @@ class RecommendListFragment : BaseFragment() {
     lateinit var adapter: RecommendListAdapter
     private var homeVm: HomeVm? = null
 
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            RecommendListFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_recommend_list, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            RecommendListFragment()
     }
 
     override fun onResume() {
