@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import java.util.regex.Pattern
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 /**
- *
+ * 推荐列表
  */
 class RecommendListFragment : BaseFragment() {
 
-    lateinit var adapter: RecommendListAdapter
+    private lateinit var adapter: RecommendListAdapter
     private var homeVm: HomeVm? = null
 
     companion object {
@@ -67,19 +68,20 @@ class RecommendListFragment : BaseFragment() {
                     val firstItemPosition = layoutManager.findFirstVisibleItemPosition()
                     //获取可见view的总数
                     val visibleItemCount = layoutManager.childCount
-
-                    if (_firstItemPosition < firstItemPosition) {
-                        _firstItemPosition = firstItemPosition
-                        _lastItemPosition = lastItemPosition
-                        GCView()
-                        fistView = recyclerView.getChildAt(0)
-                        lastView = recyclerView.getChildAt(visibleItemCount - 1)
-                    } else if (_lastItemPosition > lastItemPosition) {
-                        _firstItemPosition = firstItemPosition
-                        _lastItemPosition = lastItemPosition
-                        GCView()
-                        fistView = recyclerView.getChildAt(0)
-                        lastView = recyclerView.getChildAt(visibleItemCount - 1)
+                    //大于0说明有播放
+                    if (GSYVideoManager.instance().playPosition >= 0) {
+                        //当前播放的位置
+                        val position = GSYVideoManager.instance().playPosition
+                        //对应的播放列表TAG
+                        if (GSYVideoManager.instance().playTag == RecommendListAdapter.TAG
+                            && (position < firstItemPosition || position > lastItemPosition)) {
+                            if (GSYVideoManager.isFullState(activity)) {
+                                return
+                            }
+                            //如果滑出去了上面和下面就是否，和今日头条一样
+                            GSYVideoManager.releaseAllVideos()
+                            adapter.notifyDataSetChanged()
+                        }
                     }
                 }
             }
@@ -88,15 +90,10 @@ class RecommendListFragment : BaseFragment() {
 
     }
 
-    private fun GCView() {
-        GSYVideoManager.releaseAllVideos()
-        adapter.notifyDataSetChanged()
+    override fun onPause() {
+        super.onPause()
+        GSYVideoManager.onPause()
     }
-
-    var _firstItemPosition = -1
-    var _lastItemPosition: Int = 0
-    var fistView: View? = null
-    var lastView: View? = null
 
     override fun onResume() {
         super.onResume()
@@ -112,6 +109,12 @@ class RecommendListFragment : BaseFragment() {
             rv_list_recommend.adapter = adapter
             homeVm!!.loadData(false)
         }
+        GSYVideoManager.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
     }
 
     override fun onApiSuccessCallBack(any: Any) {

@@ -83,15 +83,6 @@
 
         </RelativeLayout>
 
-        <!--封面-->
-        <ImageView
-            android:id="@+id/iv_cover_recommend_item"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="h,620:350"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
