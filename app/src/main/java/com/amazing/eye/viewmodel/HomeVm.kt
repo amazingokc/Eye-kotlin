@@ -1,15 +1,14 @@
 package com.amazing.eye.viewmodel
 
-import android.widget.ImageView
-import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.model.HomeModel
+import java.util.regex.Pattern
 
-class HomeVm : BaseViewModel(HomeModel()) {
+class HomeVm : BaseViewModel() {
 
     var dadaist = mutableListOf<HomeBean.IssueListBean.ItemListBean>()
-
     var isLoadMore = false
+    var date: String? = null
 
     fun getDatas(): MutableList<HomeBean.IssueListBean.ItemListBean> {
         return dadaist
@@ -17,6 +16,9 @@ class HomeVm : BaseViewModel(HomeModel()) {
 
     fun loadData(isLoadMore: Boolean) {
         this.isLoadMore = isLoadMore
+        baseModel = HomeModel()
+        (baseModel as HomeModel).isLoadMore = isLoadMore
+        (baseModel as HomeModel).date = date.toString()
         loadData()
     }
 
@@ -34,8 +36,12 @@ class HomeVm : BaseViewModel(HomeModel()) {
                 }
             }
             super.onSuccess(dadaist)
+
+            val regEx = "[^0-9]"
+            val p = Pattern.compile(regEx)
+            val m = p.matcher(any.nextPageUrl)
+            date = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
         }
-         var imageView :ImageView
     }
 
     override fun onFail(any: Any) {

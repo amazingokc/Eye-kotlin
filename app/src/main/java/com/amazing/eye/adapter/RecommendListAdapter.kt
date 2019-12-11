@@ -37,6 +37,11 @@ import java.util.concurrent.ExecutionException
 class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean.ItemListBean>) :
     RecyclerView.Adapter<RecommendListAdapter.MyViewholder>() {
 
+
+    companion object {
+        const val TAG = "RecommendListAdapter123"
+    }
+
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewholder {
@@ -74,47 +79,22 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
             it.titleTextView.text = bean.data!!.title
             //隐藏返回按钮
             it.backButton.visibility = View.GONE
+            //设置全屏按键功能
+            it.fullscreenButton.setOnClickListener { _ ->
+                it.startWindowFullscreen(context, false, true)
+            }
+            //防止错位设置
+            it.playTag = TAG
+            it.playPosition = position
+            //是否根据视频尺寸，自动选择竖屏全屏或者横屏全屏
+            it.isAutoFullWithSize = true
+            //音频焦点冲突时是否释放
+            it.isReleaseWhenLossAudio = false
+            //全屏动画
+            it.isShowFullAnimation = true
+            //小屏时不触摸滑动
+            it.setIsTouchWiget(false)
 
-            it.gsyVideoManager.setListener(object : GSYMediaPlayerListener {
-                override fun onAutoCompletion() {
-                }
-
-                override fun onPrepared() {
-                    holder.binding.root.rl_bottom_recommend_item.visibility = View.GONE
-                }
-
-                override fun onCompletion() {
-                    holder.binding.root.rl_bottom_recommend_item.visibility = View.VISIBLE
-                }
-
-                override fun onVideoPause() {
-                }
-
-                override fun onSeekComplete() {
-                }
-
-                override fun onInfo(what: Int, extra: Int) {
-                }
-
-                override fun onVideoSizeChanged() {
-                }
-
-                override fun onBufferingUpdate(percent: Int) {
-                }
-
-                override fun onBackFullscreen() {
-                }
-
-                override fun onError(what: Int, extra: Int) {
-                }
-
-                override fun onVideoResume() {
-                }
-
-                override fun onVideoResume(seek: Boolean) {
-                }
-
-            })
         }
     }
 

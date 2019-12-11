@@ -7,8 +7,8 @@ import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
 import java.util.*
 
-open class BaseViewModel constructor(var baseModel: BaseModel) : ViewModel(), IDatasListener {
-
+open class BaseViewModel constructor() : ViewModel(), IDatasListener {
+    lateinit var baseModel: BaseModel
     private val successLiveData = MutableLiveData<Any>()
     private val errorLiveData = MutableLiveData<Any>()
 
