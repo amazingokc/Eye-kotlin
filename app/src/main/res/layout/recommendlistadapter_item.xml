@@ -29,57 +29,50 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--皮肤-->
         <RelativeLayout
-            android:visibility="gone"
-            android:id="@+id/rl_skin_video_recommend_item"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/gsy_player_recommend_item"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/gsy_player_recommend_item">
 
-            <!--底部-->
-            <RelativeLayout
-                android:id="@+id/rl_bottom_recommend_item"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true">
+            <ImageView
+                android:id="@+id/iv_author_recommend_item"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                app:imgUrlCircleUrl="@{itemListBean.data.author.icon}" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/iv_author_recommend_item"
+                android:text="@{itemListBean.data.category}"
+                android:textColor="@color/text_333"
+                android:textSize="13sp" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginBottom="6dp"
-                    android:src="@drawable/ic_video_collect" />
-                <!--收藏数量-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginBottom="7dp"
-                    android:text="@{itemListBean.data.consumption.collectionCount}"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    tools:text="收藏数量" />
+            <TextView
+                android:id="@+id/tv_reply_recommend_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:text="@{itemListBean.data.consumption.replyCount}"
+                android:textColor="@color/text_333"
+                android:textSize="13sp"
+                tools:text="999" />
 
-                <!--时长-->
-                <TextView
-                    android:id="@+id/tv_time_recommend_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    tools:text="时长两年半" />
-
-            </RelativeLayout>
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:layout_toStartOf="@+id/tv_reply_recommend_item"
+                android:src="@drawable/ic_comment" />
 
         </RelativeLayout>
 

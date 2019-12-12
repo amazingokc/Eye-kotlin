@@ -13,24 +13,25 @@ fun ImageView.loadNormalImage(
     ImageLoaderUtil.getInstance().loadNormalImg(this, url, placeholder, error)
 }
 
-//@BindingAdapter("imgUrlCircleUrl")
-//public fun loadCircleImage(imageView: ImageView, url: String) {
-//    ImageLoaderUtil.getInstance().loadCircleImg(imageView, url, null, null)
-//}
+@BindingAdapter("imgUrlCircleUrl")
+ fun loadCircleImage(imageView: ImageView, url: String) {
+    ImageLoaderUtil.getInstance().loadCircleImg(imageView, url, null, null)
+}
+
 fun String.getTimeWithDuration(duration: Long): String {
     val minute = duration.div(60)
-    val second = duration.minus((minute?.times(60)))
+    val second = duration.minus((minute.times(60)))
     val realMinute: String
     val realSecond: String
-    if (minute!! < 10) {
-        realMinute = "0" + minute
+    realMinute = if (minute < 10) {
+        "0$minute"
     } else {
-        realMinute = minute.toString()
+        minute.toString()
     }
-    if (second!! < 10) {
-        realSecond = "0" + second
+    realSecond = if (second < 10) {
+        "0$second"
     } else {
-        realSecond = second.toString()
+        second.toString()
     }
     return "$realMinute:$realSecond"
 }

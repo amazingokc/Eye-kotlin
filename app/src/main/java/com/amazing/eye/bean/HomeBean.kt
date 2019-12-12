@@ -42,8 +42,8 @@ data class HomeBean(
 
                 data class ConsumptionBean(
                     var collectionCount: String,
-                    var shareCount: Int,
-                    var replyCount: Int
+                    var shareCount: String,
+                    var replyCount: String
                 ) {
                 }
 
