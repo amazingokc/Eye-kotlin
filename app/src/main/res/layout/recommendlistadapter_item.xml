@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@{itemListBean.data.consumption.replyCount}"
                 android:textColor="@color/text_333"
                 android:textSize="13sp"
