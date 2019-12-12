@@ -10,8 +10,6 @@
         <item name="windowNoTitle">true</item>
         <!--在无需多点触控的页面上，建议关闭多点触控-->
         <item name="android:splitMotionEvents">false</item>
-
-
         <!--标题栏的颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏的颜色-->

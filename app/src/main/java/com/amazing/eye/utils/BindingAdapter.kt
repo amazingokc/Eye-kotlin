@@ -4,17 +4,16 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("imgUrlCircleUrl", "placeHolder", "error")
-fun ImageView.loadNormalImage(
-    url: String?,
-    placeholder: Drawable? = null,
-    error: Drawable? = null
+@BindingAdapter("imgUrlUrl")
+fun loadNormalImage(
+    imageView: ImageView,
+    url: String?
 ) {
-    ImageLoaderUtil.getInstance().loadNormalImg(this, url, placeholder, error)
+    ImageLoaderUtil.getInstance().loadNormalImg(imageView, url, null, null)
 }
 
 @BindingAdapter("imgUrlCircleUrl")
- fun loadCircleImage(imageView: ImageView, url: String) {
+fun loadCircleImage(imageView: ImageView, url: String) {
     ImageLoaderUtil.getInstance().loadCircleImg(imageView, url, null, null)
 }
 

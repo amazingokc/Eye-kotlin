@@ -1,6 +1,7 @@
 package com.amazing.eye.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.eye.R
+import com.amazing.eye.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
-import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import kotlinx.android.synthetic.main.recommendlistadapter_item.view.*
 
@@ -23,10 +24,10 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
         const val TAG = "RecommendListAdapter123"
     }
 
-    lateinit var context: Context
+    lateinit var context: Activity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewholder {
-        context = parent.context
+        context = parent.context as Activity
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context),
             R.layout.recommendlistadapter_item, parent, false
@@ -52,7 +53,7 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
             it.setUp(bean.data!!.playUrl, false, null, null)
 
             val imageView = ImageView(context)
-            imageView.loadNormalImage(bean.data?.cover?.feed, null, null)
+            loadNormalImage(imageView,bean.data?.cover?.feed)
 
             it.thumbImageView = imageView
             it.setThumbPlay(true)
@@ -76,6 +77,13 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
             it.setIsTouchWiget(false)
 
         }
+
+        holder.binding.root.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VideoDetailActivity.intentThere(context, bean)
+            }
+
+        })
     }
 
 

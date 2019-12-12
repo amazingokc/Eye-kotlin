@@ -1,5 +1,7 @@
 package com.amazing.eye.bean
 
+import java.io.Serializable
+
 
 data class HomeBean(
     var nextPageUrl: String?, var nextPublishTime: Long,
@@ -13,7 +15,8 @@ data class HomeBean(
         var itemList: List<ItemListBean>?
     ) {
 
-        data class ItemListBean(var type: String?, var data: DataBean?, var tag: Any?) {
+        data class ItemListBean(var type: String?, var data: DataBean?, var tag: Any?) :
+            Serializable {
 
             data class DataBean(
                 var dataType: String?,
@@ -33,21 +36,22 @@ data class HomeBean(
                 var cover: CoverBean?,
                 var author: AuthorBean?,
                 var releaseTime: Long?,
-                var consumption: ConsumptionBean?
-            ) {
+                var consumption: ConsumptionBean?,
+                var playInfo: List<PlayInfoBean>
+            ) :Serializable{
                 data class CoverBean(
                     var feed: String?, var detail: String?,
                     var blurred: String?, var sharing: String?, var homepage: String?
-                ) {}
+                ) : Serializable {}
 
                 data class ConsumptionBean(
                     var collectionCount: String,
                     var shareCount: String,
                     var replyCount: String
-                ) {
+                ) : Serializable {
                 }
 
-                data class AuthorBean(var icon: String) {}
+                data class AuthorBean(var icon: String) : Serializable {}
             }
         }
     }
