@@ -1,8 +1,7 @@
 package com.amazing.eye.utils
 
-import android.graphics.drawable.Drawable
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import android.widget.ImageView
 
 @BindingAdapter("imgUrlUrl")
 fun loadNormalImage(

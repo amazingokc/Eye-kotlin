@@ -1,15 +1,13 @@
 package com.amazing.eye.adapter
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
 import com.amazing.eye.R
 import com.amazing.eye.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
@@ -24,10 +22,10 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
         const val TAG = "RecommendListAdapter123"
     }
 
-    lateinit var context: Activity
+    lateinit var context: AppCompatActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewholder {
-        context = parent.context as Activity
+        context = parent.context as AppCompatActivity
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context),
             R.layout.recommendlistadapter_item, parent, false

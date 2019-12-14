@@ -1,21 +1,20 @@
 package com.amazing.eye
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.databinding.ActivityVideoDetailBinding
 import com.amazing.eye.utils.loadNormalImage
 import com.shuyu.gsyvideoplayer.GSYVideoManager
-import kotlinx.android.synthetic.main.activity_video_detail.*
 import com.shuyu.gsyvideoplayer.utils.Debuger
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
+import kotlinx.android.synthetic.main.activity_video_detail.*
 
 
 class VideoDetailActivity : AppCompatActivity() {
@@ -26,7 +25,7 @@ class VideoDetailActivity : AppCompatActivity() {
     var isPause: Boolean = false
 
     companion object {
-        fun intentThere(context: Activity, videoDetailBean: HomeBean.IssueListBean.ItemListBean) {
+        fun intentThere(context: AppCompatActivity, videoDetailBean: HomeBean.IssueListBean.ItemListBean) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoDetailBean)
             context.startActivity(intent)

@@ -5,17 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.amazing.eye.adapter.RecommendListAdapter
 import com.amazing.eye.viewmodel.HomeVm
-import kotlinx.android.synthetic.main.fragment_recommend_list.*
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.shuyu.gsyvideoplayer.GSYVideoManager
-import java.util.regex.Pattern
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.fragment_recommend_list.*
+
 
 
 /**
@@ -25,6 +24,9 @@ class RecommendListFragment : BaseFragment() {
 
     private lateinit var adapter: RecommendListAdapter
     private var homeVm: HomeVm? = null
+    private lateinit var refresh_recommend: SwipeRefreshLayout
+    private lateinit var rv_list_recommend: RecyclerView
+
 
     companion object {
         @JvmStatic
@@ -36,7 +38,10 @@ class RecommendListFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_recommend_list, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_recommend_list, container, false)
+        refresh_recommend = view.findViewById(R.id.refresh_recommend)
+        rv_list_recommend = view.findViewById(R.id.rv_list_recommend)
+        return view
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -74,7 +79,8 @@ class RecommendListFragment : BaseFragment() {
                         val position = GSYVideoManager.instance().playPosition
                         //对应的播放列表TAG
                         if (GSYVideoManager.instance().playTag == RecommendListAdapter.TAG
-                            && (position < firstItemPosition || position > lastItemPosition)) {
+                            && (position < firstItemPosition || position > lastItemPosition)
+                        ) {
                             if (GSYVideoManager.isFullState(activity)) {
                                 return
                             }

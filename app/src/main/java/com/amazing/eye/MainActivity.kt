@@ -1,13 +1,10 @@
 package com.amazing.eye
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-import androidx.fragment.app.FragmentTransaction
-import androidx.viewpager.widget.ViewPager
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import com.amazing.eye.adapter.CommonViewpagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,7 +23,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
         val adapter = CommonViewpagerAdapter(
             supportFragmentManager,
-            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
             fragmentList
         )
         vp_content_mainactivty.offscreenPageLimit = fragmentList.size

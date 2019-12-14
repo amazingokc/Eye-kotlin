@@ -3,12 +3,12 @@ package com.amazing.eye.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.widget.ImageView;
+
 
 import com.amazing.eye.ApplicationContext;
 import com.bumptech.glide.Glide;

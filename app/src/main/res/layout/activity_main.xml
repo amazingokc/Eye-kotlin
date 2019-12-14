@@ -28,7 +28,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/btn_recommend_mainactivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:textColor="@color/text_333"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/btn_hot_mainactivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

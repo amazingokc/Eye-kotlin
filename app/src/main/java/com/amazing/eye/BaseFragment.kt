@@ -1,10 +1,8 @@
 package com.amazing.eye
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import com.amazing.eye.bean.BaseBean
+import androidx.fragment.app.Fragment
 import com.amazing.eye.interfaces.IBaseView
 import com.amazing.eye.viewmodel.BaseViewModel
 
@@ -17,11 +15,15 @@ open class BaseFragment : Fragment(), IBaseView {
 
     override fun registerViewModelObserver(baseViewModel: BaseViewModel) {
         baseViewModel.getSuccessLiveData().observe(this, Observer<Any> {
-            onApiSuccessCallBack(it)
+            if (it != null) {
+                onApiSuccessCallBack(it)
+            }
         })
 
         baseViewModel.getErrorLiveData().observe(this, Observer<Any> {
-            onApiErrorCallBack(it)
+            if (it != null) {
+                onApiErrorCallBack(it)
+            }
         })
     }
 

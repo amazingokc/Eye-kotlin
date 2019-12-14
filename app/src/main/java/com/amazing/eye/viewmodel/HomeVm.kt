@@ -1,5 +1,6 @@
 package com.amazing.eye.viewmodel
 
+import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.model.HomeModel
 import java.util.regex.Pattern
@@ -45,7 +46,7 @@ class HomeVm : BaseViewModel() {
     }
 
     override fun onFail(any: Any) {
-        if (any is HomeBean) {
+        if (any is BaseBean) {
             super.onFail(any.errorMessage)
         }
     }

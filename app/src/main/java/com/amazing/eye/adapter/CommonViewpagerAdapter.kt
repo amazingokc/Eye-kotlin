@@ -4,12 +4,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-open class CommonViewpagerAdapter(fm: FragmentManager, behavior: Int) :
-    FragmentPagerAdapter(fm, behavior) {
+
+open class CommonViewpagerAdapter(fm: FragmentManager) :
+    FragmentPagerAdapter(fm) {
 
     private lateinit var list:List<Fragment>
 
-    constructor(fm: FragmentManager, behavior: Int, list: List<Fragment>) : this(fm, behavior) {
+    constructor(fm: FragmentManager, list: List<Fragment>) : this(fm) {
         this.list = list
     }
 
