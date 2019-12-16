@@ -11,6 +11,7 @@ import android.widget.ImageView
 import com.amazing.eye.R
 import com.amazing.eye.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
+import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import kotlinx.android.synthetic.main.recommendlistadapter_item.view.*
 

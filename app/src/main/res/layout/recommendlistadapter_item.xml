@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        <com.amazing.eye.customView.SampleCoverVideo
             android:id="@+id/gsy_player_recommend_item"
             android:layout_width="match_parent"
             android:layout_height="0dp"
