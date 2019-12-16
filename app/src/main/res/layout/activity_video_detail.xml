@@ -31,5 +31,94 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_detail_activity" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/video_detail_activity">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{videoDetailBean.data.title}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="标题" />
+
+            <TextView
+                android:id="@+id/tv_video_time_detail_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="时间" />
+
+            <TextView
+                android:id="@+id/tv_video_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{videoDetailBean.data.description}"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                tools:text="视频描述" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="14dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_video_collect" />
+
+            <TextView
+                android:id="@+id/tv_video_favor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{videoDetailBean.data.consumption.collectionCount}"
+                android:textColor="@color/white"
+                tools:text="收藏" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_video_share" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{videoDetailBean.data.consumption.shareCount}"
+                android:textColor="@color/white"
+                tools:text="分享" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_comment2"
+                android:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{videoDetailBean.data.consumption.replyCount}"
+                android:textColor="@color/white"
+                tools:text="评论" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

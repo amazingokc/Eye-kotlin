@@ -1,5 +1,6 @@
 package com.amazing.eye
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.res.Configuration
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.databinding.ActivityVideoDetailBinding
+import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.Debuger
@@ -25,13 +27,17 @@ class VideoDetailActivity : AppCompatActivity() {
     var isPause: Boolean = false
 
     companion object {
-        fun intentThere(context: AppCompatActivity, videoDetailBean: HomeBean.IssueListBean.ItemListBean) {
+        fun intentThere(
+            context: AppCompatActivity,
+            videoDetailBean: HomeBean.IssueListBean.ItemListBean
+        ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoDetailBean)
             context.startActivity(intent)
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityVideoDetailBinding>(
@@ -41,6 +47,10 @@ class VideoDetailActivity : AppCompatActivity() {
         videoDetailBean =
             intent.getSerializableExtra("videoDetailBean") as HomeBean.IssueListBean.ItemListBean
         binding.videoDetailBean = videoDetailBean
+
+        val time = String().getTimeWithDuration(videoDetailBean.data?.duration!!)
+        val category = videoDetailBean.data!!.category
+        tv_video_time_detail_activity.text = "$category / $time"
 
         //外部辅助的旋转，帮助全屏
         orientationUtils = OrientationUtils(this, video_detail_activity)
