@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.viewpager.widget.ViewPager
 import com.amazing.eye.adapter.CommonViewpagerAdapter
 import com.amazing.eye.home.RecommendListFragment
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
         val adapter = CommonViewpagerAdapter(
             supportFragmentManager,
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
             fragmentList
         )
         vp_content_mainactivty.offscreenPageLimit = fragmentList.size

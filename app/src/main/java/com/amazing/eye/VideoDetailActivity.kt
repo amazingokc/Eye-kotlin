@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.widget.ImageView
 import com.amazing.eye.bean.HomeBean
+import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.databinding.ActivityVideoDetailBinding
 import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_video_detail.*
 
 class VideoDetailActivity : AppCompatActivity() {
 
-    lateinit var videoDetailBean: HomeBean.IssueListBean.ItemListBean
+    lateinit var videoDetailBean: VideoBean
     lateinit var orientationUtils: OrientationUtils
     var isPlay: Boolean = false
     var isPause: Boolean = false
@@ -29,10 +30,10 @@ class VideoDetailActivity : AppCompatActivity() {
     companion object {
         fun intentThere(
             context: AppCompatActivity,
-            videoDetailBean: HomeBean.IssueListBean.ItemListBean
+            videoBean: VideoBean
         ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
-            intent.putExtra("videoDetailBean", videoDetailBean)
+            intent.putExtra("videoDetailBean", videoBean)
             context.startActivity(intent)
         }
     }
@@ -45,11 +46,11 @@ class VideoDetailActivity : AppCompatActivity() {
             R.layout.activity_video_detail
         )
         videoDetailBean =
-            intent.getSerializableExtra("videoDetailBean") as HomeBean.IssueListBean.ItemListBean
+            intent.getSerializableExtra("videoDetailBean") as VideoBean
         binding.videoDetailBean = videoDetailBean
 
-        val time = String().getTimeWithDuration(videoDetailBean.data?.duration!!)
-        val category = videoDetailBean.data!!.category
+        val time = String().getTimeWithDuration(videoDetailBean.duration!!)
+        val category = videoDetailBean.category
         tv_video_time_detail_activity.text = "$category / $time"
 
         //外部辅助的旋转，帮助全屏
@@ -58,7 +59,7 @@ class VideoDetailActivity : AppCompatActivity() {
         orientationUtils.isEnable = false
 
         val imageView = ImageView(this)
-        loadNormalImage(imageView, videoDetailBean.data?.cover?.feed)
+        loadNormalImage(imageView, videoDetailBean.feed)
         val gsyVideoOption = GSYVideoOptionBuilder()
         gsyVideoOption.setThumbImageView(imageView)
             .setIsTouchWiget(true)
@@ -67,9 +68,9 @@ class VideoDetailActivity : AppCompatActivity() {
             .setAutoFullWithSize(true)
             .setShowFullAnimation(false)
             .setNeedLockFull(true)
-            .setUrl(videoDetailBean.data!!.playUrl)
+            .setUrl(videoDetailBean.playUrl)
             .setCacheWithPlay(false)
-            .setVideoTitle(videoDetailBean.data!!.title)
+            .setVideoTitle(videoDetailBean.title)
             .setVideoAllCallBack(object : GSYSampleCallBack() {
                 override fun onPrepared(url: String?, vararg objects: Any) {
                     super.onPrepared(url, *objects)

@@ -17,7 +17,9 @@ class HomeVm : BaseViewModel() {
 
     fun loadData(isLoadMore: Boolean) {
         this.isLoadMore = isLoadMore
-        baseModel = HomeModel()
+        if (baseModel == null) {
+            baseModel = HomeModel()
+        }
         (baseModel as HomeModel).isLoadMore = isLoadMore
         (baseModel as HomeModel).date = date.toString()
         loadData()
@@ -40,7 +42,7 @@ class HomeVm : BaseViewModel() {
 
             val regEx = "[^0-9]"
             val p = Pattern.compile(regEx)
-            val m = p.matcher(any.nextPageUrl)
+            val m = p.matcher(any.nextPageUrl.toString())
             date = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
         }
     }

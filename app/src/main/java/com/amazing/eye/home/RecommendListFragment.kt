@@ -44,7 +44,6 @@ class RecommendListFragment : BaseFragment() {
         return view
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

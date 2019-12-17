@@ -7,7 +7,7 @@
 
         <variable
             name="videoDetailBean"
-            type="com.amazing.eye.bean.HomeBean.IssueListBean.ItemListBean" />
+            type="com.amazing.eye.bean.VideoBean" />
 
     </data>
 
@@ -27,7 +27,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:imgUrlUrl="@{videoDetailBean.data.cover.blurred}"
+            app:imgUrlUrl="@{videoDetailBean.blurred}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_detail_activity" />
 
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{videoDetailBean.data.title}"
+                android:text="@{videoDetailBean.title}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@{videoDetailBean.data.description}"
+                android:text="@{videoDetailBean.description}"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 tools:text="视频描述" />
@@ -85,7 +85,7 @@
                 android:id="@+id/tv_video_favor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{videoDetailBean.data.consumption.collectionCount}"
+                android:text="@{videoDetailBean.collect}"
                 android:textColor="@color/white"
                 tools:text="收藏" />
 
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="@{videoDetailBean.data.consumption.shareCount}"
+                android:text="@{videoDetailBean.share}"
                 android:textColor="@color/white"
                 tools:text="分享" />
 
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="@{videoDetailBean.data.consumption.replyCount}"
+                android:text="@{videoDetailBean.reply}"
                 android:textColor="@color/white"
                 tools:text="评论" />
 

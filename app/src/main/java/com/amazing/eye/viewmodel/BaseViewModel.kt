@@ -7,7 +7,7 @@ import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
 
 open class BaseViewModel constructor() : ViewModel(), IDatasListener {
-    lateinit var baseModel: BaseModel
+    var baseModel: BaseModel? = null
     private val successLiveData = MutableLiveData<Any>()
     private val errorLiveData = MutableLiveData<Any>()
 
@@ -23,8 +23,10 @@ open class BaseViewModel constructor() : ViewModel(), IDatasListener {
     }
 
     open fun loadData() {
-        baseModel.setIDatasListener(this)
-        baseModel.loadData()
+        baseModel?.let {
+            it.setIDatasListener(this)
+            it.loadData()
+        }
     }
 
     override fun getSuccess(baseBean: BaseBean) {

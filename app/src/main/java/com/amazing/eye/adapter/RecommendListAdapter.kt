@@ -1,5 +1,6 @@
 package com.amazing.eye.adapter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -11,13 +12,13 @@ import android.widget.ImageView
 import com.amazing.eye.R
 import com.amazing.eye.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
+import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import kotlinx.android.synthetic.main.recommendlistadapter_item.view.*
 
 class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean.ItemListBean>) :
     RecyclerView.Adapter<RecommendListAdapter.MyViewholder>() {
-
 
     companion object {
         const val TAG = "RecommendListAdapter123"
@@ -43,16 +44,12 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
         holder.binding.setVariable(com.amazing.eye.BR.recommendlistadapter, this)
         holder.binding.executePendingBindings()
         val bean = dadaist[position]
-//        //时长
-//        holder.binding.root.tv_time_recommend_item.text =
-//            String().getTimeWithDuration(bean.data?.duration!!)
-
         //播放器相关设置
         holder.binding.root.gsy_player_recommend_item.let {
             it.setUp(bean.data!!.playUrl, false, null, null)
 
             val imageView = ImageView(context)
-            loadNormalImage(imageView,bean.data?.cover?.feed)
+            loadNormalImage(imageView, bean.data?.cover?.feed)
 
             it.thumbImageView = imageView
             it.setThumbPlay(true)
@@ -79,7 +76,31 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
 
         holder.binding.root.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                VideoDetailActivity.intentThere(context, bean)
+                val desc = bean?.data?.description
+                val duration = bean?.data?.duration
+                val playUrl = bean?.data?.playUrl
+                val blurred = bean?.data?.cover?.blurred
+                val collect = bean?.data?.consumption?.collectionCount
+                val share = bean?.data?.consumption?.shareCount
+                val reply = bean?.data?.consumption?.replyCount
+                val photo = bean?.data?.cover?.feed
+                val title = bean?.data?.title
+                val category = bean?.data?.category
+                val time = System.currentTimeMillis()
+                val videoBean = VideoBean(
+                    photo,
+                    title,
+                    desc,
+                    duration,
+                    playUrl,
+                    category,
+                    blurred,
+                    collect,
+                    share,
+                    reply,
+                    time
+                )
+                VideoDetailActivity.intentThere(context, videoBean)
             }
 
         })

@@ -39,6 +39,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // DataBinding 注解处理依赖
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'androidx.databinding:databinding-compiler:3.5.3'
 
     //RxJava

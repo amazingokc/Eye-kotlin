@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hotAdapter"
+            type="com.amazing.eye.adapter.HotAdapter" />
+
+        <variable
+            name="dataBean"
+            type="com.amazing.eye.bean.HotBean.ItemListBean.DataBean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imgUrlUrl="@{dataBean.cover.feed}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#30000000" />
+
+        <TextView
+            android:id="@+id/tv_title_hot_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{dataBean.title}"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="45454545" />
+
+        <TextView
+            android:id="@+id/tv_category_time_hot_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_hot_item"
+            tools:text="44555" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
