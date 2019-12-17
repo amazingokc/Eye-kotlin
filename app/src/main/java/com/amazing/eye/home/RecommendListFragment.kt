@@ -1,4 +1,4 @@
-package com.amazing.eye
+package com.amazing.eye.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.amazing.eye.BaseFragment
+import com.amazing.eye.R
 import com.shuyu.gsyvideoplayer.GSYVideoManager
-import kotlinx.android.synthetic.main.fragment_recommend_list.*
-
 
 
 /**

@@ -1,6 +1,6 @@
 package com.amazing.eye.model
 
-import com.amazing.eye.IDatasListener
+import com.amazing.eye.interfaces.IDatasListener
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.network.RestCreator
 import com.amazing.eye.network.RestService

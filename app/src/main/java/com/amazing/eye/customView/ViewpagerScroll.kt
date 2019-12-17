@@ -1,4 +1,4 @@
-package com.amazing.eye
+package com.amazing.eye.customView
 
 import android.content.Context
 import androidx.viewpager.widget.ViewPager
@@ -9,13 +9,13 @@ class ViewpagerScroll(context: Context, attrs: AttributeSet?) : ViewPager(contex
 
     var isScroll = false   //是否可以滚动
 
-//    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-//        return if (isScroll) {
-//            super.onInterceptTouchEvent(ev)
-//        } else {
-//            false
-//        }
-//    }
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return if (isScroll) {
+            super.onInterceptTouchEvent(ev)
+        } else {
+            false
+        }
+    }
 
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
         return if (isScroll) {

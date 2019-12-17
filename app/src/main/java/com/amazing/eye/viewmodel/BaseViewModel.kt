@@ -2,10 +2,9 @@ package com.amazing.eye.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.amazing.eye.IDatasListener
+import com.amazing.eye.interfaces.IDatasListener
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
-import java.util.*
 
 open class BaseViewModel constructor() : ViewModel(), IDatasListener {
     lateinit var baseModel: BaseModel

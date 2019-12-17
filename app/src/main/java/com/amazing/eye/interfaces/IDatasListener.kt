@@ -1,4 +1,4 @@
-package com.amazing.eye
+package com.amazing.eye.interfaces
 
 import com.amazing.eye.bean.BaseBean
 

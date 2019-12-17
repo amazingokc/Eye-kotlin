@@ -1,4 +1,4 @@
-package com.amazing.eye
+package com.amazing.eye.hot
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.amazing.eye.R
 
 
 class HotListFragment : Fragment() {
@@ -19,7 +20,6 @@ class HotListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_hot_list, container, false)
     }
 
