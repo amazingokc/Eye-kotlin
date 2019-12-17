@@ -1,6 +1,5 @@
 package com.amazing.eye.adapter
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -9,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.amazing.eye.ApplicationContext
 import com.amazing.eye.R
 import com.amazing.eye.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.bean.VideoBean
-import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
+import kotlinx.android.synthetic.main.activity_video_detail.*
 import kotlinx.android.synthetic.main.recommendlistadapter_item.view.*
 
 class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean.ItemListBean>) :
@@ -52,6 +52,8 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
             loadNormalImage(imageView, bean.data?.cover?.feed)
 
             it.thumbImageView = imageView
+            it.thumbImageView.transitionName =
+                ApplicationContext.getString(R.string.transitionName_video)
             it.setThumbPlay(true)
             it.titleTextView.text = bean.data!!.title
             //隐藏返回按钮
@@ -71,39 +73,43 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
             it.isShowFullAnimation = true
             //小屏时不触摸滑动
             it.setIsTouchWiget(false)
-
         }
 
-        holder.binding.root.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val desc = bean?.data?.description
-                val duration = bean?.data?.duration
-                val playUrl = bean?.data?.playUrl
-                val blurred = bean?.data?.cover?.blurred
-                val collect = bean?.data?.consumption?.collectionCount
-                val share = bean?.data?.consumption?.shareCount
-                val reply = bean?.data?.consumption?.replyCount
-                val photo = bean?.data?.cover?.feed
-                val title = bean?.data?.title
-                val category = bean?.data?.category
-                val time = System.currentTimeMillis()
-                val videoBean = VideoBean(
-                    photo,
-                    title,
-                    desc,
-                    duration,
-                    playUrl,
-                    category,
-                    blurred,
-                    collect,
-                    share,
-                    reply,
-                    time
-                )
-                VideoDetailActivity.intentThere(context, videoBean)
-            }
-
-        })
+        holder.binding.root.setOnClickListener {
+            val desc = bean.data?.description
+            val duration = bean.data?.duration
+            val playUrl = bean.data?.playUrl
+            val blurred = bean.data?.cover?.blurred
+            val collect = bean.data?.consumption?.collectionCount
+            val share = bean.data?.consumption?.shareCount
+            val reply = bean.data?.consumption?.replyCount
+            val photo = bean.data?.cover?.feed
+            val title = bean.data?.title
+            val category = bean.data?.category
+            val time = System.currentTimeMillis()
+            val isPlaying = holder.binding.root.gsy_player_recommend_item.isInPlayingState
+            val currentPosition = holder.binding.root.gsy_player_recommend_item.currentPosition
+            val videoBean = VideoBean(
+                photo,
+                title,
+                desc,
+                duration,
+                playUrl,
+                category,
+                blurred,
+                collect,
+                share,
+                reply,
+                time,
+                isPlaying,
+                currentPosition
+            )
+            VideoDetailActivity.intentThere(
+                context,
+                videoBean,
+                holder.binding.root.gsy_player_recommend_item
+            )
+        }
     }
 
 

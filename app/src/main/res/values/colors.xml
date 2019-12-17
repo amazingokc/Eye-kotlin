@@ -9,4 +9,5 @@
     <color name="text_666">#666666</color>
     <color name="text_333">#333333</color>
     <color name="gray_line">#AAAAAA</color>
+    <color name="transparent">#00000000</color>
 </resources>

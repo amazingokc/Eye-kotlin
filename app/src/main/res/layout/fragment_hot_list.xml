@@ -13,6 +13,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabSelectedTextColor="@color/text_333"
+        android:background="@color/white"
         app:tabTextColor="@color/text_666" />
 
     <com.amazing.eye.customView.ViewpagerScroll

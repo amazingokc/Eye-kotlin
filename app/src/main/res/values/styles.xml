@@ -17,6 +17,10 @@
         <!--默认的光标、选中的RadioButton颜色-->
         <item name="colorAccent">@color/colorAccent</item>
         <!-- 避免控件会顶到状态栏上 -->
+        <!--支持共享元素动画-->
+        <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
 </resources>

@@ -16,10 +16,11 @@
         android:layout_height="match_parent"
         tools:context=".VideoDetailActivity">
 
-        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        <com.amazing.eye.customView.SampleCoverVideo
             android:id="@+id/video_detail_activity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:transitionName="@string/transitionName_video"
             app:layout_constraintDimensionRatio="h,1280:720"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

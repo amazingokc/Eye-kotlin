@@ -1,6 +1,7 @@
 package com.amazing.eye
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.res.Configuration
@@ -18,6 +19,12 @@ import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.activity_video_detail.*
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 
 
 class VideoDetailActivity : AppCompatActivity() {
@@ -30,11 +37,17 @@ class VideoDetailActivity : AppCompatActivity() {
     companion object {
         fun intentThere(
             context: AppCompatActivity,
-            videoBean: VideoBean
+            videoBean: VideoBean,
+            mImgView: View
         ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoBean)
-            context.startActivity(intent)
+            val options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(
+                    context,
+                    mImgView, ApplicationContext.getString(R.string.transitionName_video)
+                )
+            context.startActivity(intent, options.toBundle())
         }
     }
 
@@ -81,20 +94,26 @@ class VideoDetailActivity : AppCompatActivity() {
 
                 override fun onQuitFullscreen(url: String?, vararg objects: Any) {
                     super.onQuitFullscreen(url, *objects)
-                    Debuger.printfError("***** onQuitFullscreen **** " + objects[0])//title
-                    Debuger.printfError("***** onQuitFullscreen **** " + objects[1])//当前非全屏player
+//                    Debuger.printfError("***** onQuitFullscreen **** " + objects[0])//title
+//                    Debuger.printfError("***** onQuitFullscreen **** " + objects[1])//当前非全屏player
                     orientationUtils.backToProtVideo()
                 }
             }).setLockClickListener { view, lock ->
                 orientationUtils.isEnable = !lock
             }.build(video_detail_activity)
-
+//        video_detail_activity.thumbImageView.transitionName = "shareVideoImg"
+        video_detail_activity.backButton.setOnClickListener { onBackPressed() }
         video_detail_activity.fullscreenButton.setOnClickListener {
             //直接横屏
             orientationUtils.resolveByClick()
 
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
             video_detail_activity.startWindowFullscreen(this@VideoDetailActivity, true, true)
+        }
+        //定位播放进度
+        if (videoDetailBean.isPlaying) {
+            video_detail_activity.seekOnStart = videoDetailBean.currentPosition
+            video_detail_activity.startPlayLogic()
         }
     }
 
@@ -103,7 +122,7 @@ class VideoDetailActivity : AppCompatActivity() {
         if (GSYVideoManager.backFromWindowFull(this)) {
             return
         }
-        super.onBackPressed()
+        supportFinishAfterTransition()
     }
 
 

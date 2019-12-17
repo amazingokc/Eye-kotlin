@@ -37,4 +37,8 @@ public class SampleCoverVideo extends StandardGSYVideoPlayer {
                 Utils.dip2px(context, 10), Utils.dip2px(context, 10));
     }
 
+    public long getCurrentPosition() {
+        return getGSYVideoManager().getCurrentPosition();
+    }
+
 }

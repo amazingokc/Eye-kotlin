@@ -65,9 +65,11 @@ class HotAdapter(private var dadaist: MutableList<HotBean.ItemListBean.DataBean>
                 "$collect",
                 "$share",
                 "$reply",
-                timeMillis
+                timeMillis,
+                false,
+                0
             )
-            VideoDetailActivity.intentThere(context, videoBean)
+            VideoDetailActivity.intentThere(context, videoBean, holder.binding.root.iv_hot_item)
         }
     }
 
