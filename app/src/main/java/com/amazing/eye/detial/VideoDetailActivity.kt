@@ -55,7 +55,6 @@ class VideoDetailActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityVideoDetailBinding>(
@@ -125,6 +124,10 @@ class VideoDetailActivity : AppCompatActivity() {
             video_detail_activity.seekOnStart = videoDetailBean.currentPosition
             video_detail_activity.startPlayLogic()
         }
+    }
+
+    fun toCommentListFragment() {
+        vp_detail_activity.currentItem = 1
     }
 
     override fun onBackPressed() {

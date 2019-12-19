@@ -1,5 +1,6 @@
 package com.amazing.eye.detial
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,11 +38,16 @@ class DetailInfosFragment : BaseFragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val time = String().getTimeWithDuration(videoBean?.duration!!)
         val category = videoBean?.category
         tv_video_time_detail_fragment.text = "$category / $time"
+
+        tv_comment_detail_info.setOnClickListener {
+            (activity as VideoDetailActivity?)?.toCommentListFragment()
+        }
     }
 
     companion object {
