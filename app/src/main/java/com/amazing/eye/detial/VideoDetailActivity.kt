@@ -1,30 +1,32 @@
-package com.amazing.eye
+package com.amazing.eye.detial
 
 import android.annotation.SuppressLint
-import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.widget.ImageView
-import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.databinding.ActivityVideoDetailBinding
 import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import com.shuyu.gsyvideoplayer.GSYVideoManager
-import com.shuyu.gsyvideoplayer.utils.Debuger
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.activity_video_detail.*
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.View
-import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter
+import com.amazing.eye.ApplicationContext
+import com.amazing.eye.R
+import com.amazing.eye.adapter.CommonViewpagerAdapter
+import com.amazing.eye.home.RecommendListFragment
+import com.amazing.eye.hot.HotListFragment
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_detail_infos.*
 
 
 class VideoDetailActivity : AppCompatActivity() {
@@ -42,11 +44,10 @@ class VideoDetailActivity : AppCompatActivity() {
         ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoBean)
-            val options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(
-                    context,
-                    mImgView, ApplicationContext.getString(R.string.transitionName_video)
-                )
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                context, mImgView,
+                ApplicationContext.getString(R.string.transitionName_video)
+            )
             context.startActivity(intent, options.toBundle())
         }
     }
@@ -60,11 +61,19 @@ class VideoDetailActivity : AppCompatActivity() {
         )
         videoDetailBean =
             intent.getSerializableExtra("videoDetailBean") as VideoBean
-        binding.videoDetailBean = videoDetailBean
 
-        val time = String().getTimeWithDuration(videoDetailBean.duration!!)
-        val category = videoDetailBean.category
-        tv_video_time_detail_activity.text = "$category / $time"
+        val fragmentList: MutableList<Fragment> = mutableListOf(
+            DetailInfosFragment.newInstance(videoDetailBean),
+            DetailInfosFragment.newInstance(videoDetailBean)
+        )
+        val adapter = CommonViewpagerAdapter(
+            supportFragmentManager,
+            FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
+            fragmentList
+        )
+        vp_detail_activity.offscreenPageLimit = fragmentList.size
+        vp_detail_activity.adapter = adapter
+        vp_detail_activity.currentItem = 0
 
         //外部辅助的旋转，帮助全屏
         orientationUtils = OrientationUtils(this, video_detail_activity)

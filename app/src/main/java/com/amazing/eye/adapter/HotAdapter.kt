@@ -1,7 +1,6 @@
 package com.amazing.eye.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.eye.R
-import com.amazing.eye.VideoDetailActivity
-import com.amazing.eye.bean.HomeBean
+import com.amazing.eye.detial.VideoDetailActivity
 import com.amazing.eye.bean.HotBean
 import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.utils.getTimeWithDuration

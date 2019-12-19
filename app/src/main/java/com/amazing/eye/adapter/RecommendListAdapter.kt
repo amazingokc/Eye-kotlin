@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.amazing.eye.ApplicationContext
 import com.amazing.eye.R
-import com.amazing.eye.VideoDetailActivity
+import com.amazing.eye.detial.VideoDetailActivity
 import com.amazing.eye.bean.HomeBean
 import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.utils.loadNormalImage
-import kotlinx.android.synthetic.main.activity_video_detail.*
 import kotlinx.android.synthetic.main.recommendlistadapter_item.view.*
 
 class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBean.ItemListBean>) :
