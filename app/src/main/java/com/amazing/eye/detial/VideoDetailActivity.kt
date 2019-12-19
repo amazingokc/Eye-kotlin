@@ -1,6 +1,5 @@
 package com.amazing.eye.detial
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.content.res.Configuration
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.amazing.eye.bean.VideoBean
 import com.amazing.eye.databinding.ActivityVideoDetailBinding
-import com.amazing.eye.utils.getTimeWithDuration
 import com.amazing.eye.utils.loadNormalImage
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
@@ -23,11 +21,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.amazing.eye.ApplicationContext
 import com.amazing.eye.R
 import com.amazing.eye.adapter.CommonViewpagerAdapter
-import com.amazing.eye.home.RecommendListFragment
-import com.amazing.eye.hot.HotListFragment
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_detail_infos.*
-
 
 class VideoDetailActivity : AppCompatActivity() {
 
@@ -39,10 +32,7 @@ class VideoDetailActivity : AppCompatActivity() {
 
     companion object {
         fun intentThere(
-            context: AppCompatActivity,
-            videoBean: VideoBean,
-            showPosition: Int,
-            mImgView: View
+            context: AppCompatActivity, videoBean: VideoBean, showPosition: Int, mImgView: View
         ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoBean)
@@ -57,7 +47,7 @@ class VideoDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityVideoDetailBinding>(
+        DataBindingUtil.setContentView<ActivityVideoDetailBinding>(
             this,
             R.layout.activity_video_detail
         )

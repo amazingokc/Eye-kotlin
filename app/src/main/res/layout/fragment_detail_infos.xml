@@ -17,12 +17,12 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:imgUrlUrl="@{videoDetailBean.blurred}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/video_detail_activity" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="14dp"
