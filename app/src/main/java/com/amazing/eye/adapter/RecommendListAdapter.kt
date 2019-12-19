@@ -75,42 +75,50 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
         }
 
         holder.binding.root.setOnClickListener {
-            val desc = bean.data?.description
-            val duration = bean.data?.duration
-            val playUrl = bean.data?.playUrl
-            val blurred = bean.data?.cover?.blurred
-            val collect = bean.data?.consumption?.collectionCount
-            val share = bean.data?.consumption?.shareCount
-            val reply = bean.data?.consumption?.replyCount
-            val photo = bean.data?.cover?.feed
-            val title = bean.data?.title
-            val category = bean.data?.category
-            val time = System.currentTimeMillis()
-            val isPlaying = holder.binding.root.gsy_player_recommend_item.isInPlayingState
-            val currentPosition = holder.binding.root.gsy_player_recommend_item.currentPosition
-            val videoBean = VideoBean(
-                photo,
-                title,
-                desc,
-                duration,
-                playUrl,
-                category,
-                blurred,
-                collect,
-                share,
-                reply,
-                time,
-                isPlaying,
-                currentPosition
-            )
-            VideoDetailActivity.intentThere(
-                context,
-                videoBean,
-                holder.binding.root.gsy_player_recommend_item
-            )
+            topDetail(bean, holder, 0)
+        }
+        holder.binding.root.tv_reply_recommend_item.setOnClickListener{
+            topDetail(bean, holder, 1)
         }
     }
 
+    private fun topDetail(bean: HomeBean.IssueListBean.ItemListBean, holder: MyViewholder, showPositon:Int) {
+        val desc = bean.data?.description
+        val duration = bean.data?.duration
+        val playUrl = bean.data?.playUrl
+        val blurred = bean.data?.cover?.blurred
+        val collect = bean.data?.consumption?.collectionCount
+        val share = bean.data?.consumption?.shareCount
+        val reply = bean.data?.consumption?.replyCount
+        val photo = bean.data?.cover?.feed
+        val title = bean.data?.title
+        val category = bean.data?.category
+        val time = System.currentTimeMillis()
+        val isPlaying = holder.binding.root.gsy_player_recommend_item.isInPlayingState
+        val currentPosition = holder.binding.root.gsy_player_recommend_item.currentPosition
+        val videoBean = VideoBean(
+            bean.data?.id,
+            photo,
+            title,
+            desc,
+            duration,
+            playUrl,
+            category,
+            blurred,
+            collect,
+            share,
+            reply,
+            time,
+            isPlaying,
+            currentPosition
+        )
+        VideoDetailActivity.intentThere(
+            context,
+            videoBean,
+            showPositon,
+            holder.binding.root.gsy_player_recommend_item
+        )
+    }
 
     class MyViewholder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 

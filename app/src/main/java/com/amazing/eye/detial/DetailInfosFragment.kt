@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.amazing.eye.BaseFragment
 
 import com.amazing.eye.R
 import com.amazing.eye.bean.VideoBean
@@ -17,7 +18,7 @@ private const val ARG_PARAM1 = "param1"
 
 /**
  */
-class DetailInfosFragment : Fragment() {
+class DetailInfosFragment : BaseFragment() {
     private var videoBean: VideoBean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,4 +53,5 @@ class DetailInfosFragment : Fragment() {
                 }
             }
     }
+
 }

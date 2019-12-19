@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:padding="8dp"
+            android:paddingLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gsy_player_recommend_item">
 
@@ -42,6 +42,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 app:imgUrlCircleUrl="@{itemListBean.data.author.icon}" />
 
             <TextView
@@ -57,22 +59,19 @@
             <TextView
                 android:id="@+id/tv_reply_recommend_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
+                android:drawableStart="@drawable/ic_comment"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@{itemListBean.data.consumption.replyCount}"
                 android:textColor="@color/text_333"
                 android:textSize="13sp"
                 tools:text="999" />
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:layout_toStartOf="@+id/tv_reply_recommend_item"
-                app:srcCompat="@drawable/ic_comment" />
 
         </RelativeLayout>
 

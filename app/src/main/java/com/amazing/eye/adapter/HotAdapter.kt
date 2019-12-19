@@ -53,6 +53,7 @@ class HotAdapter(private var dadaist: MutableList<HotBean.ItemListBean.DataBean>
             val duration = dadaist[position].duration
             val timeMillis = System.currentTimeMillis()
             val videoBean = VideoBean(
+                dadaist[position].id,
                 photoUrl,
                 title,
                 desc,
@@ -67,7 +68,7 @@ class HotAdapter(private var dadaist: MutableList<HotBean.ItemListBean.DataBean>
                 false,
                 0
             )
-            VideoDetailActivity.intentThere(context, videoBean, holder.binding.root.iv_hot_item)
+            VideoDetailActivity.intentThere(context, videoBean, 0, holder.binding.root.iv_hot_item)
         }
     }
 

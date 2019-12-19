@@ -10,4 +10,5 @@
     <color name="text_333">#333333</color>
     <color name="gray_line">#AAAAAA</color>
     <color name="transparent">#00000000</color>
+    <color name="blue">#03A9F4</color>
 </resources>

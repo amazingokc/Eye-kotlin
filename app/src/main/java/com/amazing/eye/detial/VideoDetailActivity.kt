@@ -35,15 +35,18 @@ class VideoDetailActivity : AppCompatActivity() {
     lateinit var orientationUtils: OrientationUtils
     var isPlay: Boolean = false
     var isPause: Boolean = false
+    var showPosition = 0
 
     companion object {
         fun intentThere(
             context: AppCompatActivity,
             videoBean: VideoBean,
+            showPosition: Int,
             mImgView: View
         ) {
             val intent = Intent(context, VideoDetailActivity::class.java)
             intent.putExtra("videoDetailBean", videoBean)
+            intent.putExtra("showPosition", showPosition)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 context, mImgView,
                 ApplicationContext.getString(R.string.transitionName_video)
@@ -59,12 +62,12 @@ class VideoDetailActivity : AppCompatActivity() {
             this,
             R.layout.activity_video_detail
         )
-        videoDetailBean =
-            intent.getSerializableExtra("videoDetailBean") as VideoBean
+        videoDetailBean = intent.getSerializableExtra("videoDetailBean") as VideoBean
+        showPosition = intent.getIntExtra("showPosition", 0)
 
         val fragmentList: MutableList<Fragment> = mutableListOf(
             DetailInfosFragment.newInstance(videoDetailBean),
-            DetailInfosFragment.newInstance(videoDetailBean)
+            CommentListFragment.newInstance(videoDetailBean.videoId)
         )
         val adapter = CommonViewpagerAdapter(
             supportFragmentManager,
@@ -73,7 +76,7 @@ class VideoDetailActivity : AppCompatActivity() {
         )
         vp_detail_activity.offscreenPageLimit = fragmentList.size
         vp_detail_activity.adapter = adapter
-        vp_detail_activity.currentItem = 0
+        vp_detail_activity.currentItem = showPosition
 
         //外部辅助的旋转，帮助全屏
         orientationUtils = OrientationUtils(this, video_detail_activity)
@@ -103,8 +106,6 @@ class VideoDetailActivity : AppCompatActivity() {
 
                 override fun onQuitFullscreen(url: String?, vararg objects: Any) {
                     super.onQuitFullscreen(url, *objects)
-//                    Debuger.printfError("***** onQuitFullscreen **** " + objects[0])//title
-//                    Debuger.printfError("***** onQuitFullscreen **** " + objects[1])//当前非全屏player
                     orientationUtils.backToProtVideo()
                 }
             }).setLockClickListener { view, lock ->

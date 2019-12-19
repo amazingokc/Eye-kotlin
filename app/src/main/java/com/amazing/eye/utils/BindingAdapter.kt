@@ -1,7 +1,10 @@
 package com.amazing.eye.utils
 
+import android.annotation.SuppressLint
 import androidx.databinding.BindingAdapter
 import android.widget.ImageView
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("imgUrlUrl")
 fun loadNormalImage(
@@ -32,4 +35,14 @@ fun String.getTimeWithDuration(duration: Long): String {
         second.toString()
     }
     return "$realMinute:$realSecond"
+}
+
+@SuppressLint("SimpleDateFormat")
+fun String.getCustomTime(time: Long): String {
+
+    val date = Date()
+    date.time = java.lang.Long.parseLong(time.toString())
+
+    val template = SimpleDateFormat("dd/MM HH:mm")
+    return template.format(date)
 }

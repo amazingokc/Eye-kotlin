@@ -37,7 +37,7 @@ abstract class BaseModel {
                 }
 
                 override fun onError(e: Throwable) {
-                    var baseBean = BaseBean()
+                    val baseBean = BaseBean()
                     baseBean.responCode = -1
                     baseBean.responType = ""
                     baseBean.errorMessage = e.message.toString()
