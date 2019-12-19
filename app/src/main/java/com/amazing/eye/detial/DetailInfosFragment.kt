@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.amazing.eye.BaseFragment
+import com.amazing.eye.MainActivity
 
 import com.amazing.eye.R
 import com.amazing.eye.bean.VideoBean
@@ -46,7 +47,7 @@ class DetailInfosFragment : BaseFragment() {
         tv_video_time_detail_fragment.text = "$category / $time"
 
         tv_comment_detail_info.setOnClickListener {
-            (activity as VideoDetailActivity?)?.toCommentListFragment()
+            (activity as? VideoDetailActivity?)?.toCommentListFragment()
         }
     }
 
