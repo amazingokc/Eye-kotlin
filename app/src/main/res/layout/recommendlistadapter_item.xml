@@ -44,6 +44,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                app:placeholder="@{@drawable/ic_avatar}"
+                app:error="@{@drawable/ic_avatar}"
                 app:imgUrlCircleUrl="@{itemListBean.data.author.icon}" />
 
             <TextView

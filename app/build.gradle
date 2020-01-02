@@ -40,6 +40,7 @@ dependencies {
 
     // DataBinding 注解处理依赖
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.media:media:1.0.1'
     kapt 'androidx.databinding:databinding-compiler:3.5.3'
 
     //RxJava

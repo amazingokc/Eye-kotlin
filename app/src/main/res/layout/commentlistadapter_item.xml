@@ -25,6 +25,8 @@
             android:id="@+id/iv_avatar_comment_list_item"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            app:placeholder="@{@drawable/ic_avatar}"
+            app:error="@{@drawable/ic_avatar}"
             app:imgUrlCircleUrl="@{replyListBean.user.avatar}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
