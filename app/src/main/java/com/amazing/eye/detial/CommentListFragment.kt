@@ -38,12 +38,6 @@ class CommentListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //下拉刷新
-        refresh_comment_fragment.setOnRefreshListener {
-            videoId?.let {
-                commentListVm!!.loadData(it, false)
-            }
-        }
         //加载更多
         rv_comment_list_fragment.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -75,7 +69,6 @@ class CommentListFragment : BaseFragment() {
             rv_comment_list_fragment.adapter = commentListAdapter
 
             videoId?.let {
-                refresh_comment_fragment.isRefreshing = true
                 commentListVm!!.loadData(it, false)
             }
         }
@@ -96,11 +89,9 @@ class CommentListFragment : BaseFragment() {
     override fun onApiSuccessCallBack(any: Any) {
         super.onApiSuccessCallBack(any)
         commentListAdapter.notifyDataSetChanged()
-        refresh_comment_fragment.isRefreshing = false
     }
 
     override fun onApiErrorCallBack(any: Any) {
         super.onApiErrorCallBack(any)
-        refresh_comment_fragment.isRefreshing = false
     }
 }
