@@ -33,7 +33,7 @@ open class BaseViewModel constructor() : ViewModel(), IDatasListener {
         onSuccess(baseBean)
     }
 
-    override fun getfaild(baseBean: BaseBean) {
+    override fun getFaild(baseBean: BaseBean) {
         onFail(baseBean)
     }
 }

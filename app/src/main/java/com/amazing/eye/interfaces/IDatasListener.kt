@@ -6,5 +6,5 @@ interface IDatasListener {
 
     fun getSuccess(baseBean: BaseBean)
 
-    fun getfaild(baseBean: BaseBean)
+    fun getFaild(baseBean: BaseBean)
 }

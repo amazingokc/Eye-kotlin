@@ -44,45 +44,49 @@ class RecommendListAdapter(private var dadaist: MutableList<HomeBean.IssueListBe
         holder.binding.executePendingBindings()
         val bean = dadaist[position]
         //播放器相关设置
-        holder.binding.root.gsy_player_recommend_item.let {
-            it.setUp(bean.data!!.playUrl, false, null, null)
+        holder.binding.root.gsy_player_recommend_item.run {
+            setUp(bean.data!!.playUrl, false, null, null)
 
             val imageView = ImageView(context)
             loadNormalImage(imageView, bean.data?.cover?.feed)
 
-            it.thumbImageView = imageView
-            it.thumbImageView.transitionName =
+            thumbImageView = imageView
+            thumbImageView.transitionName =
                 ApplicationContext.getString(R.string.transitionName_video)
-            it.setThumbPlay(true)
-            it.titleTextView.text = bean.data!!.title
+            setThumbPlay(true)
+            titleTextView.text = bean.data!!.title
             //隐藏返回按钮
-            it.backButton.visibility = View.GONE
+            backButton.visibility = View.GONE
             //设置全屏按键功能
-            it.fullscreenButton.setOnClickListener { _ ->
-                it.startWindowFullscreen(context, false, true)
+            fullscreenButton.setOnClickListener { _ ->
+                startWindowFullscreen(context, false, true)
             }
             //防止错位设置
-            it.playTag = TAG
-            it.playPosition = position
+            playTag = TAG
+            playPosition = position
             //是否根据视频尺寸，自动选择竖屏全屏或者横屏全屏
-            it.isAutoFullWithSize = true
+            isAutoFullWithSize = true
             //音频焦点冲突时是否释放
-            it.isReleaseWhenLossAudio = false
+            isReleaseWhenLossAudio = false
             //全屏动画
-            it.isShowFullAnimation = true
+            isShowFullAnimation = true
             //小屏时不触摸滑动
-            it.setIsTouchWiget(false)
+            setIsTouchWiget(false)
         }
 
         holder.binding.root.setOnClickListener {
             topDetail(bean, holder, 0)
         }
-        holder.binding.root.tv_reply_recommend_item.setOnClickListener{
+        holder.binding.root.tv_reply_recommend_item.setOnClickListener {
             topDetail(bean, holder, 1)
         }
     }
 
-    private fun topDetail(bean: HomeBean.IssueListBean.ItemListBean, holder: MyViewholder, showPositon:Int) {
+    private fun topDetail(
+        bean: HomeBean.IssueListBean.ItemListBean,
+        holder: MyViewholder,
+        showPositon: Int
+    ) {
         val desc = bean.data?.description
         val duration = bean.data?.duration
         val playUrl = bean.data?.playUrl

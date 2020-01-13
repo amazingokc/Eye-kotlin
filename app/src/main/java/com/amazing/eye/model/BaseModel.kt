@@ -41,7 +41,7 @@ abstract class BaseModel {
                     baseBean.responCode = -1
                     baseBean.responType = ""
                     baseBean.errorMessage = e.message.toString()
-                    iDatasListener?.getfaild(baseBean)
+                    iDatasListener?.getFaild(baseBean)
                 }
 
             })
