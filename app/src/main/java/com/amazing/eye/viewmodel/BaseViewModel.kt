@@ -6,7 +6,7 @@ import com.amazing.eye.interfaces.IDatasListener
 import com.amazing.eye.bean.BaseBean
 import com.amazing.eye.model.BaseModel
 
-open class BaseViewModel constructor() : ViewModel(), IDatasListener {
+open class BaseViewModel : ViewModel(), IDatasListener {
     var baseModel: BaseModel? = null
     private val successLiveData = MutableLiveData<Any>()
     private val errorLiveData = MutableLiveData<Any>()
